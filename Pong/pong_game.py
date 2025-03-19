@@ -21,21 +21,26 @@ my_screen.onkey(key='w',fun=player2.up)
 my_screen.onkey(key='s',fun=player2.down)
 
 is_game_on=True
+sleep_time=0.1
 while is_game_on:
     my_screen.update()
-    time.sleep(0.1)
+    time.sleep(sleep_time)
     if ball.ycor()>290 or ball.ycor()<-290:
         ball.change_direction()
     elif ball.distance(player1)<50 and ball.xcor()>320:
         ball.collision()
+        sleep_time*=0.9
     elif ball.distance(player2)<50 and ball.xcor()<-320:
         ball.collision()
+        sleep_time *= 0.9
     elif ball.xcor()>350:
         my_board.increase_score(1)
         ball.reposition()
+        sleep_time = 0.1
     elif ball.xcor()<-350:
         my_board.increase_score(2)
         ball.reposition()
+        sleep_time=0.1
     if my_board.player1_score==10 or my_board.player2_score==10:
         break
     ball.move()

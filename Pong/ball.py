@@ -15,6 +15,11 @@ class Ball(Turtle):
     def collision(self):
         self.x_move*=-1
 
+    def reposition(self):
+        self.goto(x=0, y=0)
+        self.x_move = 12
+        self.y_move = random.randint(-10, 10)
+
     def move(self):
         new_x=self.xcor()+self.x_move
         new_y=self.ycor()+self.y_move
